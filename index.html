@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAPTAG AI - Anomaly Analysis</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <img src="https://i.ibb.co/L8yCDyP/image-8c46de.png" alt="HAPTAG AI Logo" class="sidebar-logo">
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="#"><i class="ph-fill ph-house"></i><span>Home</span></a></li>
+                <li><a href="#" class="active"><i class="ph-fill ph-chart-line-up"></i><span>Analysis Dashboard</span></a></li>
+                <li><a href="#"><i class="ph-fill ph-plus-circle"></i><span>New Analysis</span></a></li>
+                <li><a href="#"><i class="ph-fill ph-gear"></i><span>Settings</span></a></li>
+            </ul>
+            <div class="sidebar-footer">
+                <button id="sidebar-toggle" aria-label="Toggle Sidebar">
+                    <i class="ph ph-caret-double-left"></i>
+                </button>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <header class="page-header">
+                <div class="header-left">
+                    <h1>Analysis for session_id_49</h1>
+                </div>
+                <div class="header-right">
+                    <div class="analytical-lens-switcher">
+                        <button class="lens-tab active" data-view="dashboard-view">Dashboard View</button>
+                        <button class="lens-tab" data-view="advanced-view">Advanced Analysis</button>
+                    </div>
+                </div>
+            </header>
+
+            <div id="dashboard-view" class="view active">
+                <section class="kpi-grid">
+                    <div class="card kpi-card">
+                        <span class="kpi-title">DETECTED ANOMALIES</span>
+                        <div class="kpi-value">17 <i class="ph ph-chart-line"></i></div>
+                    </div>
+                    <div class="card kpi-card">
+                        <span class="kpi-title">CRITICAL ERRORS</span>
+                        <div class="kpi-value">4 <i class="ph ph-chart-line"></i></div>
+                    </div>
+                    <div class="card kpi-card">
+                        <span class="kpi-title">AFFECTED COMPONENTS</span>
+                        <div class="kpi-value">3 <i class="ph ph-chart-line"></i></div>
+                    </div>
+                    <div class="card kpi-card">
+                        <span class="kpi-title">SYSTEM HEALTH SCORE</span>
+                        <div class="kpi-value">68% <i class="ph ph-chart-line"></i></div>
+                    </div>
+                </section>
+                
+                <section class="card">
+                    <div class="card-header">
+                        <h2>Anomaly Log</h2>
+                        <div class="table-controls">
+                           <select aria-label="Filter by severity">
+                               <option>Filter by Severity</option>
+                               <option value="critical">Critical</option>
+                               <option value="warning">Warning</option>
+                           </select>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table class="anomaly-table">
+                            <thead>
+                                <tr>
+                                    <th>Status</th>
+                                    <th>Timestamp</th>
+                                    <th>Level</th>
+                                    <th>Component</th>
+                                    <th>Content</th>
+                                    <th>Confidence</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-severity="critical">
+                                    <td><span class="badge status-new">New Detection</span></td>
+                                    <td>2016-09-28 04:30:31</td>
+                                    <td><span class="badge level-critical">ERROR</span></td>
+                                    <td>CBS</td>
+                                    <td>Failed to start standard sample upload. HRESULT = 0x80004005</td>
+                                    <td>0.95</td>
+                                    <td><button class="icon-button" aria-label="View Context"><i class="ph ph-magnifying-glass"></i></button></td>
+                                </tr>
+                                <tr class="context-row" style="display: none;">
+                                    <td colspan="7"><pre>...
+[2016-09-28 04:30:30] [Info] Initializing upload sequence...
+[2016-09-28 04:30:31] [Error] Failed to start standard sample upload. HRESULT = 0x80004005, E_FAIL
+[2016-09-28 04:30:31] [Info] Aborting sequence...
+...</pre></td>
+                                </tr>
+                                <tr data-severity="warning">
+                                    <td><span class="badge status-known">Known Issue</span></td>
+                                    <td>2016-09-28 04:30:32</td>
+                                    <td><span class="badge level-warning">WARNING</span></td>
+                                    <td>SQM</td>
+                                    <td>SQM upload failed.</td>
+                                    <td>0.81</td>
+                                    <td><button class="icon-button" aria-label="View Context"><i class="ph ph-magnifying-glass"></i></button></td>
+                                </tr>
+                                <tr class="context-row" style="display: none;">
+                                    <td colspan="7"><pre>...
+[2016-09-28 04:30:31] [Info] Starting SQM data compilation...
+[2016-09-28 04:30:32] [Warning] SQM upload failed. Endpoint not reachable.
+[2016-09-28 04:30:33] [Info] Will retry in 10 minutes...
+...</pre></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                
+                <section class="card">
+                    <div class="card-header">
+                        <h2>AI Analyst Report</h2>
+                         <button class="button-secondary">Export Report</button>
+                    </div>
+                    <div class="ai-summary">
+                        <div class="ai-summary-tabs">
+                            <button class="ai-tab active">Overall Summary</button>
+                            <button class="ai-tab">Recommended Actions</button>
+                        </div>
+                        <div class="ai-summary-content">
+                             <p>The system encountered significant issues with manifest parsing and package handling, potentially leading to failed updates and incomplete telemetry data uploads.</p>
+                            <h3>Potential Impact</h3>
+                            <p>These errors likely result in incomplete or failed Windows updates, which could leave the system vulnerable or lacking new features.</p>
+                        </div>
+                         <div class="ai-summary-content" style="display: none;">
+                            <ul class="action-checklist">
+                                <li><label><input type="checkbox">Run the System File Checker tool (`sfc /scannow`) to check for and repair corrupt system files.</label></li>
+                                <li><label><input type="checkbox">Use the DISM tool to repair the Windows Component Store.</label></li>
+                                <li><label><input type="checkbox">Clear the C:\\Windows\\SoftwareDistribution\\Download folder.</label></li>
+                                <li><label><input type="checkbox" checked>Verify network connectivity and permissions for the SQM upload process.</label></li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+            
+            <div id="advanced-view" class="view" style="display: none;">
+                <section class="card">
+                    <div class="card-header">
+                        <h2>Natural Language Query</h2>
+                    </div>
+                    <div class="query-interface">
+                        <i class="ph ph-magnifying-glass"></i>
+                        <input type="text" placeholder="Ask about this session... (e.g., 'Show me all critical anomalies related to authentication')">
+                    </div>
+                </section>
+                <div class="advanced-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Component Impact Map (Sankey Diagram)</h3>
+                        </div>
+                        <div class="placeholder-viz">
+                            <i class="ph ph-graph"></i>
+                            <span>Sankey Diagram Placeholder</span>
+                        </div>
+                    </div>
+                     <div class="card">
+                        <div class="card-header">
+                            <h3>Timeline Heatmap</h3>
+                        </div>
+                        <div class="placeholder-viz">
+                             <i class="ph ph-table"></i>
+                             <span>Heatmap Placeholder</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
